@@ -1,4 +1,8 @@
 import { MediaPipeInferenceService } from './gen_ai_media_pipe/media-pipe.inference';
+import { formatChatMessage } from './markdown-formatter';
+// Import hljs CSS (you'll need to add this to your build)
+import 'highlight.js/styles/github.css';  // Choose a style you prefer
+
 const mediaPipeInferenceService = new MediaPipeInferenceService();
 
 // Loading popup elements
@@ -127,7 +131,8 @@ function responseSetter() {
   let value = '';
   function set(response: string) {
     value = response;
-    botMessage.innerHTML = value;
+    // Format the message with markdown-it
+    botMessage.innerHTML = formatChatMessage(value);
     chatBox.scrollTop = chatBox.scrollHeight;
   }
   

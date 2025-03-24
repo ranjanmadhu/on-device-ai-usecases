@@ -25,9 +25,9 @@ export class MediaPipeInferenceService {
           this.llmInference = llm;
           resolve(true);
         })
-        .catch(() => {
-          console.error("Failed to initialize LLM Inference Service.");
-          reject();
+        .catch((error) => {
+          console.error("Failed to initialize LLM Inference Service:", error);
+          reject(error);
         });
     });
   };
@@ -42,20 +42,33 @@ export class MediaPipeInferenceService {
       let result = '';
       const tokenSize = this.sizeInTokens(message);
       if (tokenSize <= this.maxTokens) {
-        await this.llmInference?.generateResponse(
-          this.prompt(message),
-          (partialResults: string, complete: boolean) => {
-            result += partialResults;
-            if (callback) {
-              callback(result, complete);
-            }
-          });
-        resolve({ result });
-      } else {
-        if (callback) {
-          callback('Message too long for my abilities to response!!', true);
+        try {
+          console.log(this.prompt(message));
+          await this.llmInference?.generateResponse(
+            this.prompt(message),
+            (partialResults: string, complete: boolean) => {
+              result += partialResults;
+              if (callback) {
+                callback(result, complete);
+              }
+              
+              if (complete) {
+                resolve({ result });
+              }
+            });
+        } catch (error) {
+          console.error("Error generating response:", error);
+          if (callback) {
+            callback('Error generating response. Please try again.', true);
+          }
+          reject(error);
         }
-        reject({ result: '' });
+      } else {
+        const errorMsg = 'Message too long for my abilities to respond!!';
+        if (callback) {
+          callback(errorMsg, true);
+        }
+        reject(new Error(errorMsg));
       }
     });
   }
@@ -66,7 +79,20 @@ export class MediaPipeInferenceService {
 
   defaultPrompt = `You are a highly capable AI assistant. Provide concise, accurate responses. Clarify ambiguities. 
    Use logic and creativity to solve problems. Be helpful while respecting ethics and safety. 
-   Adapt your tone to the user.`;
+   Adapt your tone to the user. Format your responses using Markdown syntax:
+   
+   - Use **bold** for emphasis
+   - Use *italics* for subtle emphasis
+   - Use # ## ### for headings
+   - Use \`code\` for inline code snippets
+   - Use \`\`\`language\\ncode here\\n\`\`\` for code blocks with syntax highlighting
+   - Use > for blockquotes
+   - Use - or * for bullet points
+   - Use 1. 2. 3. for numbered lists
+   - Use [text](url) for links
+   - Use | tables | with | header |\\n| --- | --- | --- |\\n| data | data | data | for tables
+   
+   When sharing code examples, always use proper markdown formatting with the appropriate language tag.`;
 
   private prompt(message: string) {
     const promptBuilder = new Array<string>();

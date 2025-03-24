@@ -113,3 +113,118 @@ button:hover {
     width: 100%;
   }
 }
+
+/* Chat message formatting */
+.message {
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: #dcf8c6;
+  margin-left: auto;
+}
+
+.message.bot {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+}
+
+.message.system, .message.error {
+  align-self: center;
+  width: 80%;
+  text-align: center;
+  font-style: italic;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #666;
+}
+
+.message.error {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+}
+
+/* Markdown formatting styles */
+.message.bot p {
+  margin: 0 0 10px 0;
+}
+
+.message.bot h1, 
+.message.bot h2, 
+.message.bot h3, 
+.message.bot h4, 
+.message.bot h5, 
+.message.bot h6 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.message.bot a {
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.message.bot a:hover {
+  text-decoration: underline;
+}
+
+.message.bot code {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.message.bot pre {
+  background-color: #282c34;
+  border-radius: 5px;
+  padding: 10px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+.message.bot pre code {
+  background-color: transparent;
+  color: #abb2bf;
+  padding: 0;
+}
+
+.message.bot ul, .message.bot ol {
+  padding-left: 20px;
+  margin: 5px 0;
+}
+
+.message.bot table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.message.bot th, .message.bot td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.message.bot th {
+  background-color: #f2f2f2;
+}
+
+.message.bot blockquote {
+  border-left: 4px solid #ccc;
+  margin-left: 0;
+  padding-left: 10px;
+  color: #666;
+}
+
+/* Syntax highlighting (works with highlight.js) */
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  border-radius: 5px;
+}
