@@ -79,19 +79,7 @@ export class MediaPipeInferenceService {
 
   defaultPrompt = `You are a highly capable AI assistant. Provide concise, accurate responses. Clarify ambiguities. 
    Use logic and creativity to solve problems. Be helpful while respecting ethics and safety. 
-   Adapt your tone to the user. Format your responses using Markdown syntax:
-   
-   - Use **bold** for emphasis
-   - Use *italics* for subtle emphasis
-   - Use # ## ### for headings
-   - Use \`code\` for inline code snippets
-   - Use \`\`\`language\\ncode here\\n\`\`\` for code blocks with syntax highlighting
-   - Use > for blockquotes
-   - Use - or * for bullet points
-   - Use 1. 2. 3. for numbered lists
-   - Use [text](url) for links
-   - Use | tables | with | header |\\n| --- | --- | --- |\\n| data | data | data | for tables
-   
+   Adapt your tone to the user. Format your responses using Markdown syntax. 
    When sharing code examples, always use proper markdown formatting with the appropriate language tag.`;
 
   private prompt(message: string) {
@@ -99,7 +87,7 @@ export class MediaPipeInferenceService {
     const agent = this.getAgent(message);
 
     promptBuilder.push(`<start_of_turn>user\n`)
-    promptBuilder.push(`${agent.message}<end_of_turn>`);
+    promptBuilder.push(`${agent.prompt} ${agent.message}<end_of_turn>`);
     promptBuilder.push(`<start_of_turn>model\n`);
 
     return promptBuilder.join("");
