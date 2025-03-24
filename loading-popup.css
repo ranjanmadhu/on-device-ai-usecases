@@ -1,0 +1,88 @@
+/* Loading Popup Styles */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  
+  .loading-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .loading-popup {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .loading-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .loading-message {
+    margin-bottom: 20px;
+    color: #555;
+  }
+  
+  .loading-progress-container {
+    height: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+  
+  .loading-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+    border-radius: 5px;
+    transition: width 0.3s ease;
+  }
+  
+  .loading-progress-bar.indeterminate {
+    width: 30%;
+    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+    animation: indeterminate-progress 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes indeterminate-progress {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(400%);
+    }
+  }
+  
+  .loading-cancel-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+  }
+  
+  .loading-cancel-btn:hover {
+    background-color: #d32f2f;
+  }

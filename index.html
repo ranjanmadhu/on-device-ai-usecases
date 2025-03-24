@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>On Device AI Use Cases</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="loading-popup.css" />
+  </head>
+
+  <body>
+    <div class="header">
+      <h1>On Device AI Use Cases</h1>
+      <button id="loadModelBtn" class="btn">Load Model</button>
+    </div>
+   
+    <div class="chat-container">
+      <div id="chatBox" class="chat-box"></div>
+      <div class="progress-bar">
+        <div class="progress-bar-value"></div>
+      </div>
+      <textarea
+        id="userInput"
+        rows="3"
+        placeholder="Type your message here..."
+      ></textarea>
+      <div class="action-area" id="chat-btns">
+        <button id="sendBtn" class="btn">Send</button>
+      </div>
+    </div>
+
+    <!-- Loading Popup -->
+    <div id="loadingOverlay" class="loading-overlay">
+      <div class="loading-popup">
+        <div class="loading-title">Loading AI Model</div>
+        <div id="loadingMessage" class="loading-message">Initializing model, please wait...</div>
+        <div class="loading-progress-container">
+          <div id="loadingProgressBar" class="loading-progress-bar indeterminate"></div>
+        </div>
+        <button id="loadingCancelBtn" class="loading-cancel-btn">Cancel</button>
+      </div>
+    </div>
+    
+    <script type="module" src="./src/index.ts"></script>
+  </body>
+</html>

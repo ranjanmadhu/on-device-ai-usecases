@@ -1,0 +1,37 @@
+{
+  "name": "on-device-ai-usecases",
+  "version": "1.0.0",
+  "description": "A collection of samples for On Device Generative AI, and Machine learning Use cases.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ranjanmadhu/on-device-ai-usecases.git"
+  },
+  "keywords": [
+    "OnDeviceAI",
+    "GenAI"
+  ],
+  "author": "Madhu Ranjan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ranjanmadhu/on-device-ai-usecases/issues"
+  },
+  "homepage": "https://github.com/ranjanmadhu/on-device-ai-usecases#readme",
+  "dependencies": {
+    "@mediapipe/tasks-genai": "^0.10.22",
+    "highlight.js": "^11.11.1",
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^22.13.11",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.2"
+  }
+}
